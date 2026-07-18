@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1784394577217,
+    "section": "bedroom",
+    "subcategory": "BEDS",
+    "name": "TWIN BED",
+    "description": "SIMPLE AND ELEGANT DESIGN",
+    "image": "/uploads/1784394577213.jpg"
+  },
+  {
+    "id": 1784396919657,
+    "section": "living",
+    "subcategory": "ARABIAN MEJLIS",
+    "name": "MAJLIS",
+    "description": "A SIMPLE AND ELEGANT DESIGN MADE WITH STRONG MATERIALS FOR A LUXURIES AND MODERN LOOK ",
+    "image": "/uploads/1784396919649.webp"
+  },
+  {
+    "id": 1784400456190,
+    "section": "dining",
+    "subcategory": "Dinning Table set",
+    "name": "dinning set for 8",
+    "description": "with a beautiful look amazing for dinning and sitting and spend sometime",
+    "image": "/uploads/1784400456177"
+  },
+  {
+    "id": 1784400634785,
+    "section": "doors",
+    "subcategory": "main door",
+    "name": "Main Entrance door ",
+    "description": "A special door for a special house",
+    "image": "/uploads/1784400634781.jpg"
+  },
+  {
+    "id": 1784402425783,
+    "section": "kitchen",
+    "subcategory": "cabinet",
+    "name": "U Shape Kitchen Cabinet",
+    "description": "For More Comfort And Space",
+    "image": "/uploads/1784402425775.jpg"
+  }
+]

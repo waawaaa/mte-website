@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MTE Admin Control Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 min-h-screen p-6 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
+    
+    <!-- LEFT SIDE: UPLOAD FORM -->
+    <div class="bg-white p-8 shadow-sm border border-gray-100 rounded">
+        <h2 class="text-xl font-bold text-emerald-950 mb-6 uppercase tracking-wider">Add Furniture Showcase Item</h2>
+        
+        <form action="/api/products" method="POST" enctype="multipart/form-data" class="space-y-4">
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Main Section</label>
+                <select name="section" class="w-full border border-gray-200 p-2.5 rounded text-sm bg-white" required>
+                    <option value="bedroom">Bedroom</option>
+                    <option value="kitchen">Kitchen</option>
+                    <option value="doors">Doors</option>
+                    <option value="living">Living Room</option>
+                    <option value="dining">Dining</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Sub-Category Name</label>
+                <input type="text" name="subcategory" placeholder="e.g., Beds, Cabinets, Inner Doors" class="w-full border border-gray-200 p-2.5 rounded text-sm" required>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Item Display Name</label>
+                <input type="text" name="name" placeholder="Minimalist Wooden Structure" class="w-full border border-gray-200 p-2.5 rounded text-sm" required>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Description</label>
+                <textarea name="description" rows="3" placeholder="Write fine details about build materials..." class="w-full border border-gray-200 p-2.5 rounded text-sm" required></textarea>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Product Image</label>
+                <input type="file" name="image" accept="image/*" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100" required>
+            </div>
+            <button type="submit" class="w-full bg-emerald-800 text-white py-3 text-xs font-bold uppercase tracking-wider hover:bg-emerald-900 transition mt-4 rounded">Publish To Live Layout</button>
+        </form>
+    </div>
+
+    <!-- RIGHT SIDE: MANAGE & DELETE EXISTING ITEMS -->
+    <div class="bg-white p-8 shadow-sm border border-gray-100 rounded">
+        <h2 class="text-xl font-bold text-emerald-950 mb-6 uppercase tracking-wider">Live Inventory Manager</h2>
+        <div id="admin-product-list" class="space-y-4 max-h-[550px] overflow-y-auto pr-2">
+            <p class="text-xs text-gray-400">Loading catalog...</p>
+        </div>
+    </div>
+
+    <script>
+        // Fetch and display items with delete capabilities
+        function loadInventory() {
+            fetch('/api/products')
+                .then(res => res.json())
+                .then(products => {
+                    const listContainer = document.getElementById('admin-product-list');
+                    if (products.length === 0) {
+                        listContainer.innerHTML = '<p class="text-sm text-gray-400 italic">No products uploaded yet.</p>';
+                        return;
+                    }
+                    
+                    listContainer.innerHTML = '';
+                    products.forEach(p => {
+                        listContainer.innerHTML += `
+                            <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                                <div class="flex items-center space-x-3">
+                                    <img src="${p.image}" class="w-12 h-12 object-cover bg-gray-50 rounded">
+                                    <div>
+                                        <h4 class="font-medium text-sm text-black">${p.name}</h4>
+                                        <p class="text-xs text-emerald-700 uppercase tracking-wider">${p.section} / ${p.subcategory}</p>
+                                    </div>
+                                </div>
+                                <button onclick="deleteProduct(${p.id})" class="text-xs font-semibold uppercase tracking-wider text-red-600 hover:text-red-800 border border-red-100 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded transition">
+                                    Delete
+                                </button>
+                            </div>`;
+                    });
+                });
+        }
+
+        function deleteProduct(id) {
+            if (confirm("Are you sure you want to permanently delete this item from your showcase?")) {
+                fetch(`/api/products/${id}`, { method: 'DELETE' })
+                    .then(res => {
+                        if (res.ok) {
+                            loadInventory(); // Refresh the manager layout lists dynamically
+                        } else {
+                            alert("Something went wrong trying to delete the item.");
+                        }
+                    });
+            }
+        }
+
+        // Initialize display
+        loadInventory();
+    </script>
+</body>
+</html>

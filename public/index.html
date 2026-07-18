@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTE INTERIOR AND FURNITURE</title>
+    <!-- Tailwind CSS for modern, clean styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 bg-emerald-800 border-b border-emerald-900 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <a href="#" class="text-3xl font-black tracking-tighter text-black uppercase">MTE INTERIOR & FURNITURE</a>
+            <div class="hidden lg:flex space-x-8 font-semibold text-xs tracking-wider uppercase text-black/90">
+                <a href="#bedroom" class="hover:text-black transition underline-offset-4 hover:underline">Bedroom</a>
+                <a href="#kitchen" class="hover:text-black transition underline-offset-4 hover:underline">Kitchen</a>
+                <a href="#doors" class="hover:text-black transition underline-offset-4 hover:underline">Doors</a>
+                <a href="#living" class="hover:text-black transition underline-offset-4 hover:underline">Living Room</a>
+                <a href="#dining" class="hover:text-black transition underline-offset-4 hover:underline">Dining</a>
+                <a href="#contact" class="hover:text-black transition underline-offset-4 hover:underline">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <header class="max-w-7xl mx-auto px-6 py-20 md:py-32 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+            <span class="text-xs font-semibold tracking-widest uppercase text-emerald-700 space-x-2">Relaxed & Modern Spaces</span>
+            <h1 class="text-4xl md:text-6xl font-normal text-emerald-950 mt-4 mb-6 leading-tight">
+                Simplicity is the ultimate sophistication.
+            </h1>
+            <p class="text-gray-600 text-lg mb-8 max-w-md leading-relaxed">
+                Beautifully crafted, mid-tier modern furniture designed to bring balance and warmth to your everyday living spaces.
+            </p>
+            <a href="#bedroom" class="inline-block bg-emerald-800 text-white px-8 py-3.5 text-sm font-medium tracking-wider uppercase hover:bg-emerald-900 transition-colors">
+                Explore Collections
+            </a>
+        </div>
+        <!-- FULL-VIEW SHOWCASE BOX (No Cropping) -->
+        <div class="bg-gray-50 aspect-4/3 w-full relative overflow-hidden rounded border border-gray-100 flex items-center justify-center">
+            <img id="heroShowcaseImage" class="w-full h-full object-contain opacity-0 transition-opacity duration-1000 absolute inset-0" src="" alt="MTE Furniture Showcase">
+            <div id="heroPlaceholderText" class="text-gray-400 font-light tracking-wider absolute">
+                [ Elegant Spaces Layout ]
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 space-y-32 pb-32">
+        <section id="bedroom" class="scroll-mt-28"><h2 class="text-3xl font-light text-emerald-800 border-b border-gray-100 pb-4 mb-8">Bedroom</h2><div id="grid-bedroom" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div></section>
+        <section id="kitchen" class="scroll-mt-28"><h2 class="text-3xl font-light text-emerald-800 border-b border-gray-100 pb-4 mb-8">Kitchen</h2><div id="grid-kitchen" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div></section>
+        <section id="doors" class="scroll-mt-28"><h2 class="text-3xl font-light text-emerald-800 border-b border-gray-100 pb-4 mb-8">Doors</h2><div id="grid-doors" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div></section>
+        <section id="living" class="scroll-mt-28"><h2 class="text-3xl font-light text-emerald-800 border-b border-gray-100 pb-4 mb-8">Living Room</h2><div id="grid-living" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div></section>
+        <section id="dining" class="scroll-mt-28"><h2 class="text-3xl font-light text-emerald-800 border-b border-gray-100 pb-4 mb-8">Dining</h2><div id="grid-dining" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div></section>
+    </main>
+
+    <!-- PRODUCT QUICK VIEW MODAL WITH DYNAMIC BUTTON LINKS -->
+    <div id="productModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white max-w-2xl w-full mx-4 overflow-hidden relative p-8 shadow-xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-black text-2xl font-light">&times;</button>
+            <div class="grid md:grid-cols-2 gap-8">
+                <img id="modalImage" class="aspect-square w-full object-contain bg-gray-50 rounded" src="" alt="">
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <span id="modalCategory" class="text-xs tracking-widest uppercase text-emerald-700 font-semibold">Category</span>
+                        <h3 id="modalTitle" class="text-2xl font-normal text-black mt-2 mb-3">Product Name</h3>
+                        <p class="text-lg font-medium text-gray-900 mb-4">Contact for Quote</p>
+                        <p id="modalDesc" class="text-gray-600 text-sm leading-relaxed mb-6"></p>
+                    </div>
+                    <div class="space-y-3">
+                        <p class="text-xs text-gray-500 font-medium">Interested in this item? Contact us to order:</p>
+                        <a id="modalWhatsAppBtn" href="#" target="_blank" class="block w-full text-center bg-emerald-800 text-white py-2.5 text-xs font-semibold tracking-wider uppercase hover:bg-emerald-950 transition">
+                            Inquire via WhatsApp
+                        </a>
+                        <a id="modalTelegramBtn" href="#" target="_blank" class="block w-full text-center border border-gray-200 text-black py-2.5 text-xs font-semibold tracking-wider uppercase hover:bg-gray-50 transition">
+                            Message via Telegram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACTS FOOTER WITH CHAT LINKS -->
+    <footer id="contact" class="bg-gray-50 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-12 text-sm text-gray-600">
+            <div>
+                <h4 class="text-base font-medium text-emerald-800 uppercase tracking-wider mb-4">Our Studio</h4>
+                <p class="leading-relaxed font-medium text-black">ETHIOPIA ADDIS ABABA<br>KIRKOS SUBCITY KERA</p>
+            </div>
+            <div>
+                <h4 class="text-base font-medium text-emerald-800 uppercase tracking-wider mb-4">Direct Lines & Chat</h4>
+                <ul class="space-y-3">
+                    <li>
+                        <span class="block text-xs text-gray-400 uppercase font-semibold">Line 1 & WhatsApp:</span>
+                        <a href="tel:+251945647764" class="text-black font-medium hover:text-emerald-800 transition">+251 945 647 764</a>
+                        <span class="text-gray-300 mx-1">|</span>
+                        <a href="https://wa.me/251945647764" target="_blank" class="text-emerald-700 font-semibold hover:underline">Chat on WhatsApp</a>
+                    </li>
+                    <li>
+                        <span class="block text-xs text-gray-400 uppercase font-semibold">Line 2 & Telegram:</span>
+                        <a href="tel:+251945762276" class="text-black font-medium hover:text-emerald-800 transition">+251 945 762 276</a>
+                        <span class="text-gray-300 mx-1">|</span>
+                        <a href="https://t.me/MTE_furniture" target="_blank" class="text-sky-700 font-semibold hover:underline">Chat on Telegram</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-base font-medium text-emerald-800 uppercase tracking-wider mb-4">Follow Our Showcase</h4>
+                <div class="flex space-x-4">
+                    <a href="https://www.instagram.com/mtefurniture_interior/" target="_blank" class="text-black hover:text-emerald-700 font-medium">Instagram</a>
+                    <a href="https://web.facebook.com/Mte2026FI" target="_blank" class="text-black hover:text-emerald-700 font-medium">Facebook</a>
+                    <a href="https://www.tiktok.com/@mtefurnitureandinterior" target="_blank" class="text-black hover:text-emerald-700 font-medium">TikTok</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const modal = document.getElementById('productModal');
+
+        function openModal(title, category, description, image) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalCategory').innerText = category;
+            document.getElementById('modalDesc').innerText = description;
+            document.getElementById('modalImage').src = image;
+
+            const absoluteImageURL = window.location.origin + image;
+            const messageText = `Hello MTE Interior & Furniture, I am interested in inquiring about this product:\n\n` +
+                                `• Name: ${title}\n` +
+                                `• Category: ${category}\n` +
+                                `• Image Link: ${absoluteImageURL}`;
+            
+            const encodedMessage = encodeURIComponent(messageText);
+
+            document.getElementById('modalWhatsAppBtn').href = `https://wa.me/251945647764?text=${encodedMessage}`;
+            document.getElementById('modalTelegramBtn').href = `https://t.me/share/url?url=${encodeURIComponent(absoluteImageURL)}&text=${encodeURIComponent('Inquiring about: ' + title)}`;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+        window.onclick = function(e) { if (e.target == modal) closeModal(); }
+
+        fetch('/api/products')
+            .then(res => res.json())
+            .then(products => {
+                if(products.length > 0) {
+                    setupHeroSlideshow(products);
+                }
+
+                products.forEach(p => {
+                    const grid = document.getElementById(`grid-${p.section.toLowerCase().replace(' ', '')}`);
+                    if(grid) {
+                        grid.innerHTML += `
+                            <div class="group cursor-pointer" onclick="openModal('${p.name.replace(/'/g, "\\'")}', '${p.section} / ${p.subcategory}', '${p.description.replace(/'/g, "\\'")}', '${p.image}')">
+                                <img class="aspect-square w-full object-cover bg-gray-50 mb-4 group-hover:opacity-90 transition" src="${p.image}">
+                                <h3 class="font-medium text-black">${p.name}</h3>
+                                <p class="text-xs tracking-wider uppercase text-emerald-700 mt-1">${p.subcategory}</p>
+                            </div>`;
+                    }
+                });
+            });
+
+        function setupHeroSlideshow(products) {
+            // REMOVED THE 10 IMAGE LIMIT: Shuffles everything available in the database
+            const showcaseItems = [...products].sort(() => 0.5 - Math.random());
+            
+            const heroImg = document.getElementById('heroShowcaseImage');
+            const placeholderText = document.getElementById('heroPlaceholderText');
+            let currentIndex = 0;
+
+            function changeShowcaseImage() {
+                heroImg.classList.add('opacity-0');
+                setTimeout(() => {
+                    heroImg.src = showcaseItems[currentIndex].image;
+                    placeholderText.classList.add('hidden');
+                    heroImg.classList.remove('opacity-0');
+                    currentIndex = (currentIndex + 1) % showcaseItems.length;
+                }, 1000);
+            }
+
+            changeShowcaseImage();
+            if (showcaseItems.length > 1) {
+                setInterval(changeShowcaseImage, 5000);
+            }
+        }
+    </script>
+</body>
+</html>
