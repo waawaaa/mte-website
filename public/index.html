@@ -138,7 +138,9 @@
             const encodedMessage = encodeURIComponent(messageText);
 
             document.getElementById('modalWhatsAppBtn').href = `https://wa.me/251945647764?text=${encodedMessage}`;
-            document.getElementById('modalTelegramBtn').href = `https://t.me/share/url?url=${encodeURIComponent(absoluteImageURL)}&text=${encodeURIComponent('Inquiring about: ' + title)}`;
+            
+            // FIXED DYNAMIC LINK SYSTEM FOR TELEGRAM DIRECT CONVERSATIONS
+            document.getElementById('modalTelegramBtn').href = `https://t.me/MTE_furniture?text=${encodedMessage}`;
 
             modal.classList.remove('hidden');
             setTimeout(() => modal.classList.remove('opacity-0'), 10);
@@ -171,7 +173,6 @@
             });
 
         function setupHeroSlideshow(products) {
-            // REMOVED THE 10 IMAGE LIMIT: Shuffles everything available in the database
             const showcaseItems = [...products].sort(() => 0.5 - Math.random());
             
             const heroImg = document.getElementById('heroShowcaseImage');
